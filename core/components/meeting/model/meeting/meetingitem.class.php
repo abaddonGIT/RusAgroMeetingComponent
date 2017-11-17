@@ -1,8 +1,2 @@
 <?php
-
-/**
- * @package meeting
- */
-class MeetingItem extends xPDOSimpleObject
-{
-}
+class MeetingItem extends xPDOSimpleObject {}
