@@ -2,7 +2,7 @@
 
 class MeetingItemGetProcessor extends modObjectGetProcessor
 {
-    public $classKey = 'Ticket';
+    public $classKey = 'MeetingItem';
     public $defaultSortField = 'id';
     public $defaultSortDirection = 'DESC';
     //public $permission = 'view';

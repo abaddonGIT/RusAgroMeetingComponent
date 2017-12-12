@@ -54,13 +54,17 @@ class MeetingHomeManagerController extends modExtraManagerController
      */
     public function loadCustomCssJs()
     {
+//        echo $this->Meeting->config['jsUrl'];
         $this->addCss($this->Meeting->config['cssUrl'] . 'mgr/main.css');
         $this->addCss($this->Meeting->config['cssUrl'] . 'mgr/bootstrap.buttons.css');
         $this->addJavascript($this->Meeting->config['jsUrl'] . 'mgr/meeting.js');
         $this->addJavascript($this->Meeting->config['jsUrl'] . 'mgr/misc/utils.js');
         $this->addJavascript($this->Meeting->config['jsUrl'] . 'mgr/misc/combo.js');
         $this->addJavascript($this->Meeting->config['jsUrl'] . 'mgr/widgets/items.grid.js');
+        $this->addJavascript($this->Meeting->config['jsUrl'] . 'mgr/widgets/add.window.js');
+        $this->addJavascript($this->Meeting->config['jsUrl'] . 'mgr/widgets/subscribe.window.js');
         $this->addJavascript($this->Meeting->config['jsUrl'] . 'mgr/widgets/items.windows.js');
+        $this->addJavascript($this->Meeting->config['jsUrl'] . 'mgr/widgets/party.windows.js');
         $this->addJavascript($this->Meeting->config['jsUrl'] . 'mgr/widgets/home.panel.js');
         $this->addJavascript($this->Meeting->config['jsUrl'] . 'mgr/sections/home.js');
 

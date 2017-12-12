@@ -2,8 +2,8 @@
 
 class MeetingItemUpdateProcessor extends modObjectUpdateProcessor
 {
-    public $objectType = 'modResource';
-    public $classKey = 'modResource';
+    public $objectType = 'MeetingItem';
+    public $classKey = 'MeetingItem';
     public $languageTopics = array('meeting');
     //public $permission = 'save';
 
@@ -29,18 +29,19 @@ class MeetingItemUpdateProcessor extends modObjectUpdateProcessor
      */
     public function beforeSet()
     {
+
         $id = (int)$this->getProperty('id');
+        $name = trim($this->getProperty('fullName'));
         if (empty($id)) {
             return $this->modx->lexicon('meeting_item_err_ns');
         }
 
-        $published = $this->getProperty('published');
-
-        if ($published == "Да") {
-            $this->setProperty('published', true);
-        } else {
-            $this->setProperty('published', false);
+        if (empty($name)) {
+            $this->modx->error->addField('fullName', $this->modx->lexicon('meeting_item_err_name'));
+        } elseif ($this->modx->getCount($this->classKey, array('fullName' => $name, 'id:!=' => $id))) {
+            $this->modx->error->addField('fullName', $this->modx->lexicon('meeting_item_err_ae'));
         }
+
         return parent::beforeSet();
     }
 }

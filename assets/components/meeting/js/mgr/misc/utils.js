@@ -97,3 +97,20 @@ Meeting.utils.renderActions = function (value, props, row) {
         res.join('')
     );
 };
+
+Meeting.utils.ticketLink = function (value, id, blank) {
+    if (!value) {
+        return '';
+    }
+    else if (!id) {
+        return value;
+    }
+    var action = MODx.action
+        ? MODx.action['resource/update']
+        : 'resource/update';
+    var url = 'index.php?a=' + action + '&id=' + id;
+
+    return blank
+        ? '<a href="' + url + '" class="tickets-link" target="_blank">' + value + '</a>'
+        : '<a href="' + url + '" class="tickets-link">' + value + '</a>';
+};

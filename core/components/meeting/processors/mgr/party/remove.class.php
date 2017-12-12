@@ -24,14 +24,8 @@ class MeetingItemRemoveProcessor extends modObjectProcessor
 
         foreach ($ids as $id) {
             /** @var MeetingItem $object */
-            $meetingId = $id;
-            //Ищем подписчиком
-            $party = $this->modx->getCollection($this->classKey, array('meetingId' => $meetingId));
-            foreach ($party as $subscribe) {
-                $subscribe->remove();
-            }
 
-            if (!$object = $this->modx->getObject('Ticket', $meetingId)) {
+            if (!$object = $this->modx->getObject($this->classKey, $id)) {
                 return $this->failure($this->modx->lexicon('meeting_item_err_nf'));
             }
 

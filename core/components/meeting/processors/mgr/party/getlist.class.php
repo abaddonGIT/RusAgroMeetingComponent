@@ -1,11 +1,10 @@
 <?php
 
-class MeetingItemGetListProcessor extends modObjectGetListProcessor
+class PartyGetListProcessor extends modObjectGetListProcessor
 {
-    public $classKey = 'Ticket';
+    public $classKey = 'MeetingItem';
     public $defaultSortField = 'id';
     public $defaultSortDirection = 'DESC';
-    //public $permission = 'list';
 
 
     /**
@@ -32,15 +31,18 @@ class MeetingItemGetListProcessor extends modObjectGetListProcessor
     public function prepareQueryBeforeCount(xPDOQuery $c)
     {
         $query = trim($this->getProperty('query'));
+        $parentId = $this->getProperty('id');
+
         if ($query) {
             $c->where(array(
-                'pagetitle:LIKE' => "%{$query}%",
-                'OR:introtext:LIKE' => "%{$query}%",
-                'parent' => 167
+                'fullName:LIKE' => "%{$query}%",
+                'OR:phone:LIKE' => "%{$query}%",
+                'OR:email:LIKE' => "%{$query}%",
+                'meetingId' => $parentId
             ));
         } else {
             $c->where(array(
-                'parent' => 167
+                'meetingId' => $parentId
             ));
         }
         return $c;
@@ -66,11 +68,11 @@ class MeetingItemGetListProcessor extends modObjectGetListProcessor
             'button' => true,
             'menu' => true,
         );
-
+        //Удаление
         $array['actions'][] = array(
             'cls' => '',
             'icon' => 'icon icon-remove',
-            'title' => $this->modx->lexicon('meeting_item_delete'),
+            'title' => $this->modx->lexicon('subscribe_item_remove'),
             'action' => 'removeItem',
             'button' => true,
             'menu' => true,
@@ -80,4 +82,4 @@ class MeetingItemGetListProcessor extends modObjectGetListProcessor
     }
 }
 
-return 'MeetingItemGetListProcessor';
+return 'PartyGetListProcessor';
