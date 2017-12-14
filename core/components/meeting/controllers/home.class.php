@@ -62,6 +62,7 @@ class MeetingHomeManagerController extends modExtraManagerController
         $this->addJavascript($this->Meeting->config['jsUrl'] . 'mgr/misc/combo.js');
         $this->addJavascript($this->Meeting->config['jsUrl'] . 'mgr/widgets/items.grid.js');
         $this->addJavascript($this->Meeting->config['jsUrl'] . 'mgr/widgets/add.window.js');
+        $this->addJavascript($this->Meeting->config['jsUrl'] . 'mgr/widgets/notify.window.js');
         $this->addJavascript($this->Meeting->config['jsUrl'] . 'mgr/widgets/subscribe.window.js');
         $this->addJavascript($this->Meeting->config['jsUrl'] . 'mgr/widgets/items.windows.js');
         $this->addJavascript($this->Meeting->config['jsUrl'] . 'mgr/widgets/party.windows.js');

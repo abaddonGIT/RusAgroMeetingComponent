@@ -4,6 +4,7 @@
 Meeting.window.Party = function (config) {
     config = config || {};
     this.ident = config.ident || 'party' + Ext.id();
+    console.log(config);
     Ext.applyIf(config, {
         title: _('meeting_party_list')
         , id: this.ident
@@ -102,7 +103,8 @@ Meeting.window.Party = function (config) {
                     , cls: MODx.modx23 ? '' : 'main-wrapper'
                     , record: config.record.object
                     , pageSize: 5
-                }]
+                }
+            ]
         }
         , keys: [{
             key: Ext.EventObject.ENTER, shift: true, fn: function () {

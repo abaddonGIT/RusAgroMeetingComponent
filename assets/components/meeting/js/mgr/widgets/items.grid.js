@@ -305,6 +305,10 @@ Meeting.grid.Subscribers = function (config) {
             text: '<i class="icon icon-plus"></i>&nbsp;' + _('meeting_subscribe_create'),
             handler: this.createItem,
             scope: this
+        }, {
+            text: '<i class="icon icon-paper-plane" aria-hidden="true"></i>&nbsp;' + _('meeting_item_notifications'),
+            handler: this.sendNotify,
+            scope: this
         }, '->', {
             xtype: 'meeting-field-search',
             width: 250,
@@ -373,10 +377,39 @@ Ext.extend(Meeting.grid.Subscribers, MODx.grid.Grid, {
         }
         return this.processEvent('click', e);
     },
+    /**
+     * Окно для создания подписчика
+     * @param btn
+     * @param e
+     * @param row
+     */
     createItem: function (btn, e, row) {
         console.log(this);
         var w = MODx.load({
             xtype: 'meeting-window-add',
+            record: this.record,
+            listeners: {
+                success: {
+                    fn: function () {
+                        this.refresh();
+                    }, scope: this
+                }
+            }
+        });
+        w.reset();
+        w.setValues({'meetingId': this.record.id});
+        w.show(e.target);
+    },
+    /**
+     * Окно для отправки уведомления подписчикам
+     * @param btn
+     * @param e
+     * @param row
+     */
+    sendNotify: function (btn, e, row) {
+        console.log(this);
+        var w = MODx.load({
+            xtype: 'meeting-window-notify',
             record: this.record,
             listeners: {
                 success: {
