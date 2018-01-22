@@ -35,8 +35,10 @@ class NotifyProcessor extends modProcessor
         $fields = array
         (
             'to' => "/topics/" . $topic,
-            'data' => array(
-                'body' => $body
+            'notification' => array(
+                'body' => $body,
+                'vibrate' => 1,
+                'sound' => 1,
             )
         );
 
